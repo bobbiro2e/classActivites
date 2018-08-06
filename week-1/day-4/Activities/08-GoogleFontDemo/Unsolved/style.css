@@ -1,5 +1,10 @@
 /**
  * Google Fonts Demo
  **/
-
+h1{
+    font-family:'Hanalei Fill', cursive;
+}
+p {
+    font-family:'Gaegu', cursive;
+}
 /* Add in the Google Fonts of your choice */

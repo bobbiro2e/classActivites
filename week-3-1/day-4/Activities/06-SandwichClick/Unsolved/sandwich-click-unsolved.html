@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Trigger Clicked</title>
+
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <h1>Click to Eat Sandwich</h1>
+  <h3 id="pbj">Peanut Butter Jelly</h3>
+  <h3 id="grilledcheese">Grilled Cheese</h3>
+  <h3 id="roastbeef">Roast Beef</h3>
+  <p id="img"></p>
+
+  <script type="text/javascript">
+
+    // This document.ready isn't necessary in this example... but is needed in cases where the HTML is complex.
+    // This code makes sure that the JavaScript doesn't get run until the HTML is finished loading
+    // It's useful to become familiar with now.
+
+    $(document).ready(function () {
+
+      // VARIABLES
+      // ====================================================================
+      // Here we create variables for tracking the number of sandwiches eaten
+
+      var pbJ = 0;
+      var grilledCheese = 0;
+      var roastBeef = 0;
+
+
+      // FUNCTIONS
+      // ====================================================================
+      // Here we create various on "click" functions which capture the clicks
+      // Inside each click event is the code to create an alert, update the counter, then show the updated count.
+
+
+
+      $("#pbj").on("click", function () {
+        alert("Mmm... peanut butter jelly!");
+        pbJ++;
+        alert("You've eaten " + pbJ + " pbJs");
+
+      });
+
+      $("#grilledcheese").on("click", function () {
+        alert("Mmmmm... grilled cheese!");
+        grilledCheese++;
+        alert("You've eaten " + grilledCheese + " grilled cheese sandwiches");
+        $("#img").append("<img src='https://www.seriouseats.com/recipes/images/2013/04/20130416-grilled-cheese-variations-2-10.jpg'>")
+      });
+
+      $("#roastbeef").on("click", function () {
+        alert("Mmmm... roast beef!");
+        roastBeef++;
+        alert("You've eaten " + roastBeef + " roast beef sandwiches");
+        $("#img").append("<img src='https://images-gmi-pmc.edge-generalmills.com/2da9324c-1fdc-449e-8cb7-db71608a4f47.jpg'>")
+      });
+
+    });
+
+    $("#pbj").on("click", function () {
+    });
+
+
+
+  </script>
+
+  </script>
+
+</body>
+
+</html>

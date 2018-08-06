@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My First Object</title>
+</head>
+
+<body>
+
+  <script>
+
+    var car = {
+      make: "Honda",
+      model: "Fit",
+      color: "Blue Raspberry",
+      mileage: 3000,
+      isWorking: true,
+
+      driveToWork: function () {
+
+        alert("Going to work! Old Mileage: " + this.mileage);
+
+        this.mileage = this.mileage + 8;
+
+        alert("At work! New mileage: " + this.mileage);
+      },
+
+      driveAroundWorld: function () {
+
+        alert("Lets go around the world! Old Mileage: " + this.mileage);
+
+        this.mileage = this.mileage + 24000;
+
+        alert("Whew! New Mileage: " + this.mileage);
+        alert("Car needs a tuneup!");
+
+        this.isWorking = false;
+      },
+
+      getTuneUp: function () {
+        alert("getting tuneup... Car is ready to go!");
+        this.isWorking = true;
+      },
+
+      honk: function () {
+        alert("Honk! Honk!");
+      }
+    };
+
+    // carGame run each function on specific key press
+
+    document.onkeyup = function (event) {
+
+      var keyPressed = event.key
+
+      switch (keyPressed) {
+        case "w":
+          car.driveToWork()
+          reWriteStats()
+          break;
+        case "a":
+          car.driveAroundWorld()
+          reWriteStats()
+          break;
+        case "t":
+          car.getTuneUp()
+          reWriteStats()
+          break;
+        case "h":
+          car.honk()
+          reWriteStats()
+          break;
+      }
+
+    };
+
+    //global function reWriteStats
+    function reWriteStats() {
+      console.log(car.make)
+      console.log(car.model)
+      console.log(car.color)
+      console.log(car.mileage)
+      console.log(car.isWorking)
+    }
+
+
+  </script>
+
+</body>
+
+</html>

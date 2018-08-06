@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Array Modifications</title>
+</head>
+
+<body>
+
+  <h1>Open the console to see the magic!</h1>
+
+  <script>
+
+    var drinks = ["Coke", "Pepsi", "Water", "Orange Juice", "Hello", "Goodbye", "See Ya Later"];
+
+
+console.log("Upper lower")
+    for (index = 0; index < drinks.length; index++) {
+      console.log(drinks[index]);
+      drinks[index] = drinks[index].toLowerCase();
+      console.log(drinks[index]);
+    }
+    
+    for (index = drinks.length - 1; index == 0; index--) {
+      console.log(drinks[index])
+    }
+
+    console.log("Fourth Statement")
+    for (index = 2; index<drinks.length-2; index++){
+      console.log(drinks[index])
+    }
+
+  </script>
+
+</body>
+
+</html>
