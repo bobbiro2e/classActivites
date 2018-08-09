@@ -27,19 +27,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     // The below code fills in the first row of the table
-    var movie = "Mr. Nobody";
-    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+    var movie = "Inception";
+    var queryURL = "https://www.omdbapi.com/?apikey=trilogy&t=" + movie;
 
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
 
       // Obtain a reference to the tbody element in the DOM
+      var tbody = $("tbody");
       // Create and save a reference to new empty table row
+      var tableRow = $("<tr>");
       // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+      var title = $("<td>");
+      title.text(reponse.Title)
+      var year = $("<td>");
+      title.text(reponse.Year)
+
+      var actors = $("<td>");
+      title.text(reponse.Actors)
+
       // Append the td elements to the new table row
+      tableRow.append(title, year, actors)
       // Append the table row to the tbody element
+      tbody.append(tableRow)
     });
 
     // Repeat the above logic to add rows for two more movies of your choice
