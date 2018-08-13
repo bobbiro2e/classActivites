@@ -11,7 +11,12 @@ $(document).ready(function () {
         var studentName = $("input").val();
         var tr = $("<tr>");
         var td = $("<td>");
-        td.text(studentName);
+        var avatar = $("<img>");
+        var avatarURL = "https://api.adorable.io/avatars/285/" + studentName + "@adorable.png";
+        avatar.attr("src", avatarURL);
+        avatar.addClass("avatarIMG");
+        td.append(avatar);
+        td.append(studentName);
         tr.append(td)
         $("table").append(tr);
         $("input").val(" ");
