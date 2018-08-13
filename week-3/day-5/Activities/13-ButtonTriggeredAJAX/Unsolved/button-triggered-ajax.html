@@ -8,13 +8,6 @@
 
 <body>
   <div id="buttons">
-    <button data-person="arnold schwarzenegger">
-      I'll be back
-    </button>
-    <button data-person="michael j fox">
-      My happiness grows in direct proportion to my acceptance,
-      and in inverse proportion to my expectations.
-    </button>
 
     <!-- STEP ONE: Open this file in the browser and click on the buttons. Watch what happens -->
 
@@ -25,8 +18,17 @@
 
     <!-- **************************************** -->
 
-    <!-- YOUR BUTTONS GO HERE!!!!!! Obviously delete this text after you put them between the dashed lines here.  -->
+    <button data-person="Albert Einstein">
+      Two things are infinite: the universe and human stupidity; and I'm not sure about the universe. </button>
 
+
+    <button data-person="Charles Darwin">
+      A man who dares to waste one hour of time has not discovered the value of life.
+    </button>
+
+    <button data-person="Galileo">
+      You cannot teach a man anything; you can only help him discover it in himself.
+    </button>
     <!-- **************************************** -->
 
 
@@ -41,7 +43,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
-    $("button").on("click", function() {
+    $("button").on("click", function () {
       var person = $(this).attr("data-person");
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         person + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -50,7 +52,8 @@
         url: queryURL,
         method: "GET"
       })
-        .then(function(response) {
+        .then(function (response) {
+          console.log(response);
           var results = response.data;
 
           for (var i = 0; i < results.length; i++) {

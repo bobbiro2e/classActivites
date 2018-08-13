@@ -1,18 +1,20 @@
-console.log(this);
-
 function foo() {
     console.log(this);
-};
+}
 
-foo()
 
 var poodle = {
     bark: function () {
-        console.log(this);
-
+        console.log("bow wow wow yippy yo yippy yay");
     },
-    walk: 2,
-    eat: "all day"
+    walk: function () {
+        console.log("I'm walking here!");
+    },
+    all: function () {
+        this.walk();
+        this.bark();
+    },
+    bounce: foo
 }
 
-poodle.bark();
+poodle.bounce();
