@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>firebase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Firebase 🔥</h1>
+        <input placeholder="name" type="text" id="name" class="form-control">
+        <input placeholder="age" type="text" id="age" class="form-control">
+
+        <button class="btn btn-success" id="save">save</button>
+
+        <div id="name-display"></div>
+        <div id="age-display"></div>
+
+        <input placeholder="artist" type="text" id="artist-add" class="form-control">
+        <input placeholder="song" type="text" id="song-add" class="form-control">
+
+        <button class="btn btn-success" id="add">add</button>
+        <div id="music">
+
+
+
+        </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
+        crossorigin='anonymous'></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAEp7ekHTnY4CQIoTcUi-LzciZARciBeS4",
+            authDomain: "fir-database-bf4e3.firebaseapp.com",
+            databaseURL: "https://fir-database-bf4e3.firebaseio.com",
+            projectId: "fir-database-bf4e3",
+            storageBucket: "fir-database-bf4e3.appspot.com",
+            messagingSenderId: "169914748936"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="firebase.js"></script>
+</body>
+
+</html>
