@@ -14,3 +14,43 @@
 // Remember to be creative!
 
 // ========================================================================
+
+var inquirer = require("inquirer");
+
+inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "please create username",
+            name: "username"
+        },
+        {
+            type: "password",
+            message: "please create a password.",
+            name: "password"
+        },
+        {
+            type: "list",
+            message: "plese choose an artist.",
+            choices: ["arctic monkeys", "kanye west", "interpol"],
+            name: "artist"
+        },
+        {
+            type: "checkbox",
+            message: "please choose a genre",
+            choices: ["pop", "rap", "rnb"],
+            name: "genre"
+        }, {
+            type: "confirm",
+            message: "are you sure about your choices?",
+            dafault: true,
+            name: "confirm"
+        }
+    ])
+    .then(function (inquirerResponse) {
+        console.log(inquirerResponse)
+        if (inquirerResponse.confirm === true) {
+            console.log("\nHey " + inquirerResponse.username + ", " + inquirerResponse.artist + " is cool!")
+            console.log("\nAll types of music are awesome. Specifically, " + inquirerResponse.genre)
+        }
+    });

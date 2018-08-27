@@ -14,3 +14,41 @@
 // Major Warning: inquirer's prompt function is "asynchronous", which means that the majority of your game logic will need to be inside the .then() function for your prompt. 
 
 // ===========================================================================================================
+
+var inquirer = require("inquirer");
+
+var zombieHealth = 15;
+var myHealth = 70;
+var zombieRoll = Math.floor(Math.random() * 11);
+var damage = Math.floor(Math.random() * 6);
+
+if (myHealth >= 0) {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Save a life, Kill a Zombie. Choose a number between [1-5].",
+                name: "number"
+            },
+        ])
+        .then(function (number) {
+
+            if (number === zombieRoll) {
+                zombieHealth -= damage;
+                console.log("\ngot one! you took " + damage + " health points. 🔥");
+                console.log("\nzombie health: " + zombieHealth);
+            } else if (number !== zombieRoll) {
+                myHealth -= damage;
+                console.log("\nzombie gotcha, you lost " + damage + " health points. 😭");
+                console.log("your health: " + myHealth + "\n");
+            };
+
+        });
+
+} else if (zombieHealth === 0) {
+    console.log("KILLED A ZOMBIE CONGRATS!")
+} else {
+    console.log("you dead. better luck in the next life.")
+};
+
+//not working need to figure out how to loop game more than one prompt.
