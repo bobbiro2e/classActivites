@@ -10,15 +10,15 @@ function Programmer(name, position, age, language) {
 }
 
 // creates the printInfo method and applies it to all programmer objects
-Programmer.prototype.printInfo = function() {
+Programmer.prototype.printInfo = function () {
   console.log("Name: " + this.name + "\nPosition: " + this.position +
-  "\nAge: " + this.age + "\nLanguages: " + this.language);
+    "\nAge: " + this.age + "\nLanguages: " + this.language);
 };
 
 // variable we will use to count how many times our questions have been asked
 var count = 0;
 
-var askQuestion = function() {
+var askQuestion = function () {
   // if statement to ensure that our questions are only asked five times
   if (count < 5) {
     // runs inquirer and asks the user a series of questions whose replies are
@@ -37,7 +37,7 @@ var askQuestion = function() {
         name: "language",
         message: "What is your favorite programming language?"
       }
-    ]).then(function(answers) {
+    ]).then(function (answers) {
       // initializes the variable newProgrammer to be a programmer object which will take
       // in all of the user's answers to the questions above
       var newProgrammer = new Programmer(
