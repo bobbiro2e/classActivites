@@ -12,6 +12,7 @@ server.listen(PORT, function () {
 function handleRequest(req, res) {
 
     var path = req.url;
+    console.log(path);
 
     switch (path) {
 
@@ -71,3 +72,5 @@ function display404(url, req, res) {
         res.end(data);
     });
 }
+
+//should have made ONE function to displayPage then use for all pages. not a bunch of different functions for each page.
