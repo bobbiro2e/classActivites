@@ -47,6 +47,7 @@ function displayFoods(url, req, res) {
         res.end(data);
     });
 }
+
 function displayMovies(url, req, res) {
     fs.readFile(__dirname + "/movies.html", function (err, data) {
 
@@ -54,6 +55,7 @@ function displayMovies(url, req, res) {
         res.end(data);
     });
 }
+
 function displayFavcss(url, req, res) {
     fs.readFile(__dirname + "/favcss.html", function (err, data) {
 
@@ -63,12 +65,9 @@ function displayFavcss(url, req, res) {
 }
 
 function display404(url, req, res) {
-    var myHTML = "<html>" +
-        "<body><h1>404 Not Found </h1>" +
-        "<p>The page you were looking for: " + url + " can not be found</p>" +
-        "</body></html>";
+    fs.readFile(__dirname + "/404.html", function (err, data) {
 
-    res.writeHead(404, { "Content-Type": "text/html" });
-
-    res.end(myHTML);
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(data);
+    });
 }
