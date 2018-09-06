@@ -10,20 +10,22 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "",
-  database: "ice_creamDB"
+  password: "root",
+  database: "ice_creamDB",
+  socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) throw err;
   console.log("connected as id " + connection.threadId);
   afterConnection();
 });
 
 function afterConnection() {
-  connection.query("SELECT * FROM products", function(err, res) {
+  connection.query("SELECT * FROM products", function (err, res) {
     if (err) throw err;
     console.log(res);
+    console.log(res[1].flavor);
     connection.end();
   });
 }

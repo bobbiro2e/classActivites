@@ -1,15 +1,36 @@
 var fs = require("fs");
 
-// Write a function that logs a message, then executes
-// a function argument.
+//example 1
+function fn(str, cb) {
+    console.log(str);
+    cb();
+};
 
-// Write a function that runs a function argument if
-// its other argument is truthy.
+//example 2
+function fn2(boo, cb) {
+    if (boo) {
+        cb();
+    } else {
+        console.log("boo hoo!")
+    };
+};
 
-// Write a function that accepts a function argument and
-// a value, and returns a function that returns the result
-// of executing the function argument with the value.
-// This isn't as hard as it sounds!
+//example 3
+function fn3(v, f) {
+    return function () {
+        return f(v);
+    }
+};
 
-// Use fs.writeFile to log a message to a file called
-// log.txt. Are yo using callbacks anywhere? Where?
+//example 4
+fs.writeFile("text.txt", "successful!", function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("message logged.")
+    }
+});
+
+//yes fs uses a callback.
+//fs write file takes at least 3 arguments (text file, message, and callback function) 
+//the callback function is use to catch any errors. 
