@@ -1,9 +1,9 @@
-var http = require("http");
-var fs = require("fs");
+const http = require("http");
+const fs = require("fs");
 
-var PORT = 8080;
+const PORT = 8080;
 
-var server = http.createServer(handleRequest);
+const server = http.createServer(handleRequest);
 
 server.listen(PORT, function () {
     console.log("Server listening on: http://localhost:" + PORT);
