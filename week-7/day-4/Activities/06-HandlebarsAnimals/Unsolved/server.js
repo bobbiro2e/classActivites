@@ -43,6 +43,7 @@ app.get("/all-pets", function (req, res) {
   // Handlebars requires an object to be sent to the index.handlebars file.
 
   // 2. Send the animals to the index.handlebars file. Remember that animals is an array and not an object.
+
   var data = { animals: [] };
 
   for (var i = 0; i < animals.length; i++) {
