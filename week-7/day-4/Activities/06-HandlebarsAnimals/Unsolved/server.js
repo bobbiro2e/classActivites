@@ -43,7 +43,16 @@ app.get("/all-pets", function (req, res) {
   // Handlebars requires an object to be sent to the index.handlebars file.
 
   // 2. Send the animals to the index.handlebars file. Remember that animals is an array and not an object.
-  res.render("index", { animals })
+  var data = { animals: [] };
+
+  for (var i = 0; i < animals.length; i++) {
+    var currentAnimal = animals[i]
+
+    if (currentAnimal.pet) {
+      data.animals.push(currentAnimal);
+    }
+  }
+  res.render("index", data)
 });
 
 app.get("/all-non-pets", function (req, res) {
@@ -51,11 +60,17 @@ app.get("/all-non-pets", function (req, res) {
 
   // 3. Send all the animals that are not pets to the index.handlebars file.
 
+  var data = { animals: [] };
+
   for (var i = 0; i < animals.length; i++) {
-    if (animals[i].pet === false) {
-      return res.render("index", animals[i])
+    var currentAnimal = animals[i];
+    if (currentAnimal.pet === false) {
+      data.animals.push(currentAnimal);
     }
   }
+  res.render("index", data)
+
+
 });
 
 // Start our server so that it can begin listening to client requests.
@@ -63,3 +78,6 @@ app.listen(PORT, function () {
   // Log (server-side) when our server has started
   console.log("Server listening on: http://localhost:" + PORT);
 });
+
+
+//TO KEEP CODE DRY SHOULD MAKE FUNCTION FOR THE LOGIC USED TWICE...
