@@ -23,11 +23,11 @@ var connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "root",
-    database: "day_planner_db",
+    database: "moviePlanner_db",
     socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
     if (err) {
         console.error("error connecting: " + err.stack);
         return;
@@ -37,43 +37,34 @@ connection.connect(function(err) {
 });
 
 // Use Handlebars to render the main index.html page with the todos in it.
-app.get("/", function(req, res) {
-    connection.query("SELECT * FROM plans;", function(err, data) {
+app.get("/", function (req, res) {
+    connection.query("SELECT * FROM movies;", function (err, data) {
         if (err) {
             return res.status(500).end();
         }
 
-        res.render("index", { plans: data });
+        res.render("index", { movies: data });
     });
 });
 
 // Create a new todo
-app.post("/todos", function(req, res) {
-    connection.query("INSERT INTO plans (plan) VALUES (?)", [req.body.plan], function(err, result) {
+app.post("/movies", function (req, res) {
+    connection.query("INSERT INTO movies (movie) VALUES (?)", [req.body.movie], function (err, result) {
         if (err) {
             return res.status(500).end();
         }
 
         // Send back the ID of the new todo
         res.json({ id: result.insertId });
+        console.log("movie created at: ")
         console.log({ id: result.insertId });
     });
 });
 
-// Retrieve all todos
-app.get("/todos", function(req, res) {
-    connection.query("SELECT * FROM plans;", function(err, data) {
-        if (err) {
-            return res.status(500).end();
-        }
-
-        res.json(data);
-    });
-});
 
 // Update a todo
-app.put("/todos/:id", function(req, res) {
-    connection.query("UPDATE plans SET plan = ? WHERE id = ?", [req.body.plan, req.params.id], function(err, result) {
+app.put("/movies/:id", function (req, res) {
+    connection.query("UPDATE movies SET movie = ? WHERE id = ?", [req.body.movie, req.params.id], function (err, result) {
         if (err) {
             // If an error occurred, send a generic server failure
             return res.status(500).end();
@@ -83,13 +74,12 @@ app.put("/todos/:id", function(req, res) {
             return res.status(404).end();
         }
         res.status(200).end();
-
     });
 });
 
 // Delete a todo
-app.delete("/todos/:id", function(req, res) {
-    connection.query("DELETE FROM plans WHERE id = ?", [req.params.id], function(err, result) {
+app.delete("/movies/:id", function (req, res) {
+    connection.query("DELETE FROM movies WHERE id = ?", [req.params.id], function (err, result) {
         if (err) {
             // If an error occurred, send a generic server failure
             return res.status(500).end();
@@ -104,7 +94,7 @@ app.delete("/todos/:id", function(req, res) {
 });
 
 // Start our server so that it can begin listening to client requests.
-app.listen(PORT, function() {
+app.listen(PORT, function () {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);
 });
