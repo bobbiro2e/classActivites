@@ -15,9 +15,9 @@ var orm = {
       console.log(result);
     });
   },
-  selectBoth: function (...) {
-    var queryString = "SELECT ...";
-    connection.query(queryString, [...], function (err, result) {
+  selectJoin: function (tableColName1, tableColName2, leftTableName, rightTableName, conditionTableColName1, conditionTableColName2) {
+    var queryString = "SELECT ??, ?? FROM ?? INNER JOIN ?? ON ?? = ??";
+    connection.query(queryString, [tableColName1, tableColName2, leftTableName, rightTableName, conditionTableColName1, conditionTableColName2], function (err, result) {
       if (err) throw err;
       console.log(result);
     });
