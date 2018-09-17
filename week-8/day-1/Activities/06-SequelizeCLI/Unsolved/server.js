@@ -14,6 +14,16 @@ var PORT = process.env.PORT || 8080;
 
 // Starts the server to begin listening
 // =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+// app.listen(PORT, function () {
+//   console.log("App listening on PORT " + PORT);
+// });
+
+//Sets up database
+
+var db = require("./models");
+
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
+    console.log("Listening on port: " + PORT);
+  });
 });

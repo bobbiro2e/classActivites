@@ -53,12 +53,30 @@ module.exports = function (app) {
 
   // Add sequelize code to get all "long" books (more than 150 pages) and return them as JSON
   app.get("/api/books/long", function (req, res) {
-
+    Book.findAll({
+      where: {
+        pages: {
+          $gte: 100
+        }
+      },
+      order: [["pages", "DESC"]]
+    }).then(function (results) {
+      res.json(results);
+    });
   });
 
   // Add sequelize code to get all "short" books (150 pages or less) and return them as JSON
   app.get("/api/books/short", function (req, res) {
-
+    Book.findAll({
+      where: {
+        pages: {
+          $lte: 100
+        }
+      },
+      order: [["pages", "DESC"]]
+    }).then(function (results) {
+      res.json(results);
+    });
   });
 
   // Add sequelize code to create a book
@@ -75,7 +93,11 @@ module.exports = function (app) {
 
   // Add sequelize code to delete a book
   app.post("/api/delete", function (req, res) {
-
+    Book.destroy({
+      where: {
+        id: req.body.id
+      }
+    });
   });
 
 };

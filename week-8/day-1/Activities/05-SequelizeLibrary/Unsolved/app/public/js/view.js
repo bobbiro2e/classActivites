@@ -1,12 +1,12 @@
 // When user hits the search-btn
-$("#search-btn").on("click", function(event) {
+$("#search-btn").on("click", function (event) {
   event.preventDefault();
 
   // Save the book they typed into the book-search input
   var bookSearched = $("#book-search").val().trim();
 
   // Make an AJAX get request to our api, including the user's book in the url
-  $.get("/api/" + bookSearched, function(data) {
+  $.get("/api/" + bookSearched, function (data) {
 
     console.log(data);
     // Call our renderBooks function to add our books to the page
@@ -17,13 +17,13 @@ $("#search-btn").on("click", function(event) {
 });
 
 // When user hits the author-search-btn
-$("#author-search-btn").on("click", function() {
+$("#author-search-btn").on("click", function () {
 
   // Save the author they typed into the author-search input
   var authorSearched = $("#author-search").val().trim();
 
   // Make an AJAX get request to our api, including the user's author in the url
-  $.get("/api/author/" + authorSearched, function(data) {
+  $.get("/api/author/" + authorSearched, function (data) {
 
     // Log the data to the console
     console.log(data);
@@ -35,13 +35,13 @@ $("#author-search-btn").on("click", function() {
 });
 
 // When user hits the genre-search-btn
-$("#genre-search-btn").on("click", function() {
+$("#genre-search-btn").on("click", function () {
 
   // Save the book they typed into the genre-search input
   var genreSearched = $("#genre-search").val().trim();
 
   // Make an AJAX get request to our api, including the user's genre in the url
-  $.get("/api/genre/" + genreSearched, function(data) {
+  $.get("/api/genre/" + genreSearched, function (data) {
 
     console.log(data);
     // Call our renderBooks function to add our books to the page
@@ -71,7 +71,7 @@ function renderBooks(data) {
 
     }
 
-    $(".delete").click(function() {
+    $(".delete").click(function () {
 
       var info = {
         id: $(this).attr("data-id")
@@ -79,7 +79,7 @@ function renderBooks(data) {
 
       $.post("/api/delete", info)
         // On success, run the following code
-        .then(function(delData) {
+        .then(function (delData) {
           // Log the data we found
           console.log(delData);
           console.log("Deleted Successfully!");
