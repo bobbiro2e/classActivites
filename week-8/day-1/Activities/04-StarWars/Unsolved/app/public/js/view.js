@@ -15,7 +15,7 @@ $("#search-btn").on("click", function () {
 
   // run an AJAX GET-request for our servers api,
   // including the user's character in the url
-  $.get("/api/view" + searchedCharacter, function (data) {
+  $.get("/api/view/" + searchedCharacter, function (data) {
     // log the data to our console
     console.log(data);
     // empty to well-section before adding new content

@@ -16,7 +16,7 @@ module.exports = function (app) {
 
     AllCharacters.findAll({
       where: {
-        name: req.body.searchedCharacter
+        name: req.params.searchedCharacter
       }
     }).then(function (results) {
       res.json(results);
