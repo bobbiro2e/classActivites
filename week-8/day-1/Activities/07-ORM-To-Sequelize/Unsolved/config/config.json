@@ -4,7 +4,6 @@
     "password": "root",
     "database": "todolist",
     "host": "127.0.0.1",
-    "port": 3306,
     "dialect": "mysql",
     "dialectOptions": {
       "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
@@ -15,7 +14,6 @@
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "port": 3306,
     "dialect": "mysql"
   },
   "production": {
@@ -23,7 +21,6 @@
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "port": 3306,
     "dialect": "mysql"
   }
 }

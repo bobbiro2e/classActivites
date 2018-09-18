@@ -11,8 +11,9 @@ var source = {
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
-    database: "todolist"
+    password: "root",
+    database: "todolist",
+    socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
   },
 
   // jawsDB
@@ -28,7 +29,7 @@ var source = {
 // we use source.[name of connection] to hook into mysql
 var connection = mysql.createConnection(source.localhost);
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;
