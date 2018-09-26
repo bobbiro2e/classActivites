@@ -5,12 +5,12 @@ var request = require("request");
 
 // First, tell the console what server.js is doing
 console.log("\n***********************************\n" +
-            "Grabbing every thread name and link\n" +
-            "from reddit's webdev board:" +
-            "\n***********************************\n");
+  "Grabbing every thread name and link\n" +
+  "from reddit's webdev board:" +
+  "\n***********************************\n");
 
 // Making a request for reddit's "webdev" board. The page's HTML is passed as the callback's third argument
-request("https://old.reddit.com/r/webdev/", function(error, response, html) {
+request("https://old.reddit.com/r/webdev/", function (error, response, html) {
 
   // Load the HTML into cheerio and save it to a variable
   // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
@@ -21,14 +21,14 @@ request("https://old.reddit.com/r/webdev/", function(error, response, html) {
 
   // With cheerio, find each p-tag with the "title" class
   // (i: iterator. element: the current element)
-  $("p.title").each(function(i, element) {
+  $("p.title").each(function (i, element) {
 
     // Save the text of the element in a "title" variable
-    var title = $(element).text();
+    var title = $(this).text();
 
     // In the currently selected element, look at its child elements (i.e., its a-tags),
     // then save the values for any "href" attributes that the child elements may have
-    var link = $(element).children().attr("href");
+    var link = $(this).children().attr("href");
 
     // Save these results in an object that we'll push into the results array we defined earlier
     results.push({
