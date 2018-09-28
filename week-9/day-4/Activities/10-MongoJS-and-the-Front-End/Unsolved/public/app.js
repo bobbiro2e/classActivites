@@ -19,10 +19,29 @@
 // We'll be rewriting the table's data frequently, so let's make our code more DRY
 // by writing a function that takes in data (JSON) and creates a table body
 function displayResults(data) {
-  // Add to the table here...
+  $('#results').empty();
+  for (var i = 0; i < data.length; i++) {
+    var myhtml = $('<tr><td>' + data[i].name + '</td><td>' + data[i].numLegs + '</td><td>' + data[i].class + '</td><td>' + data[i].weight + '</td><td>' + data[i].whatIWouldReallyCallIt + '</td></tr>')
+    $("#results").append(myhtml)
+  }
 }
 
-$.getJSON("/all", function(data) {
-  // Call our function to generate a table body
+//all
+$.getJSON("/all", function (data) {
   displayResults(data);
+});
+
+//by weight
+$("#weight-sort").click(function () {
+  $("#animal-weight").attr("class", "active");
+  $.getJSON("/weight", function (data) {
+    displayResults(data);
+  })
+});
+
+//by name
+$("#name-sort").click(function () {
+  $.getJSON("/name", function (data) {
+    displayResults(data);
+  })
 });

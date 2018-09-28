@@ -23,12 +23,12 @@ var collections = ["scrapedData"];
 // Hook mongojs configuration to the db variable
 var db = mongojs(databaseUrl, collections);
 db.on("error", function(error) {
-  console.log("Database Error:", error);
+    console.log("Database Error:", error);
 });
 
 // Main route (simple Hello World Message)
 app.get("/", function(req, res) {
-  res.send("Hello world");
+    res.send("Hello world");
 });
 
 // TODO: make two more routes
@@ -38,7 +38,18 @@ app.get("/", function(req, res) {
 // This route will retrieve all of the data
 // from the scrapedData collection as a json (this will be populated
 // by the data you scrape using the next route)
-
+// Make a request call to grab the HTML body from the site of your choice
+app.get("/grabData", function(req, res) {
+    db.scrapedData.find({}, function(error, found) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log("----------displayed all results----------")
+            res.json(found);
+        }
+    });
+});
 // Route 2
 // =======
 // When you visit this route, the server will
@@ -47,10 +58,31 @@ app.get("/", function(req, res) {
 // TIP: Think back to how you pushed website data
 // into an empty array in the last class. How do you
 // push it into a MongoDB collection instead?
+app.get("/scrape", function(req, res) {
+    request("https://old.reddit.com/r/infp/", function(error, response, html) {
 
+        var $ = cheerio.load(html);
+
+
+
+        $("p.title").each(function(i, element) {
+
+            var link = $(element).children().attr("href");
+            var title = $(element).children().text();
+
+            var results = {
+                title: title,
+                link: link
+            };
+            db.scrapedData.insert(results)
+        });
+        console.log("----------SAVED all results----------")
+        res.send("Scraping your data... ")
+    });
+});
 /* -/-/-/-/-/-/-/-/-/-/-/-/- */
 
 // Listen on port 3000
 app.listen(3000, function() {
-  console.log("App running on port 3000!");
+    console.log("App running on port 3000!");
 });
