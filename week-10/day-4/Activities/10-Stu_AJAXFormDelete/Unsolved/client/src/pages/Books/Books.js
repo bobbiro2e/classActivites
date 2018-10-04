@@ -26,6 +26,40 @@ class Books extends Component {
       .catch(err => console.log(err));
   };
 
+  handleInputChange = event => {
+    // Getting the value and name of the input which triggered the change
+    let value = event.target.value;
+    const name = event.target.name;
+
+    // Updating the input's state
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault();
+
+    let { title, author, synopsis } = this.state;
+    API.saveBook({ title, author, synopsis }).then(res => {
+      let newState = [...this.state.books, res.data];
+      this.setState({ books: newState });
+    })
+  };
+
+  handleDelete = id => {
+
+    API.deleteBook(id)
+      .then(res => {
+        let bookDeleted = res.data;
+        let newBooks = this.state.books.filter(book => {
+          return (book.title !== bookDeleted.title)
+        })
+        this.setState({ books: newBooks })
+      });
+  };
+
   render() {
     return (
       <Container fluid>
@@ -35,10 +69,10 @@ class Books extends Component {
               <h1>What Books Should I Read?</h1>
             </Jumbotron>
             <form>
-              <Input name="title" placeholder="Title (required)" />
-              <Input name="author" placeholder="Author (required)" />
-              <TextArea name="synopsis" placeholder="Synopsis (Optional)" />
-              <FormBtn>Submit Book</FormBtn>
+              <Input onChange={this.handleInputChange} value={this.state.title} name="title" placeholder="Title (required)" />
+              <Input onChange={this.handleInputChange} value={this.state.author} name="author" placeholder="Author (required)" />
+              <TextArea onChange={this.handleInputChange} value={this.state.synopsis} name="synopsis" placeholder="Synopsis (Optional)" />
+              <FormBtn onClick={this.handleFormSubmit}>Submit Book</FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
@@ -55,14 +89,14 @@ class Books extends Component {
                           {book.title} by {book.author}
                         </strong>
                       </a>
-                      <DeleteBtn />
+                      <DeleteBtn onClick={() => this.handleDelete(book._id)} />
                     </ListItem>
                   );
                 })}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>

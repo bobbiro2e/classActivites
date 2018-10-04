@@ -4,7 +4,7 @@ import DeleteBtn from "../../components/DeleteBtn";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
-
+import API from "../../utils/API.js"
 class Books extends Component {
   // Initialize this.state.books as an empty array
   state = {
@@ -12,6 +12,12 @@ class Books extends Component {
   };
 
   // Add code here to get all books from the database and save them to this.state.books
+  // Add an AJAX request to retrieve all of the books in the database. Once the AJAX request is complete, it should set `this.state.books` equal to the array of books.
+  componentDidMount() {
+    API.getBooks()
+      .then(res => this.setState({ books: res.data }))
+  }
+
 
   render() {
     return (
@@ -46,8 +52,8 @@ class Books extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>
